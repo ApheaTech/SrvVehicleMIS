@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctis.demo.mapper.UserInfoMapper">
+    <select id="getPasswd" parameterType="String" resultType="String">
+        select passwd from ctis.t_user_info where userAccount=#{userAccount}
+    </select>
+    <insert id="addUser" parameterType="com.ctis.demo.pojo.UserInfo">
+        insert into ctis.t_user_info
+        set
+            userID=#{userID},
+            userAccount=#{userAccount},
+            userName=#{userName},
+            passwd=#{passwd},
+            orgID=#{orgID},
+            gender=#{gender},
+            active=#{active}
+    </insert>
+    <update id="deleteUser" parameterType="String">
+        update ctis.t_user_info
+        set active=0
+        where userID=#{userID}
+    </update>
+    <update id="updateUser" parameterType="com.ctis.demo.pojo.UserInfo">
+        update ctis.t_user_info
+        set
+            userAccount=#{userAccount},
+            userName=#{userName},
+            passwd=#{passwd},
+            orgID=#{orgID},
+            gender=#{gender},
+            active=#{active}
+        where userID=#{userID}
+    </update>
+    <select id="getUserList" resultType="com.ctis.demo.pojo.UserInfoVO">
+        select ctis.t_user_info.*, ctis.t_org_info.orgName
+        from ctis.t_user_info, ctis.t_org_info
+        where ctis.t_user_info.orgID=ctis.t_org_info.orgID
+        and ctis.t_user_info.active=1
+    </select>
+    <select id="getUser" parameterType="String" resultType="com.ctis.demo.pojo.UserInfoVO">
+        select ctis.t_user_info.*, ctis.t_org_info.orgName
+        from ctis.t_user_info, ctis.t_org_info
+        where ctis.t_user_info.orgID=ctis.t_org_info.orgID
+        and userID=#{userID}
+        and ctis.t_user_info.active=1
+    </select>
+    <select id="getUserByAccount" parameterType="String" resultType="com.ctis.demo.pojo.UserInfoVO">
+        select ctis.t_user_info.*, ctis.t_org_info.orgName
+        from ctis.t_user_info, ctis.t_org_info
+        where ctis.t_user_info.orgID=ctis.t_org_info.orgID
+          and userAccount=#{userAccount}
+          and ctis.t_user_info.active=1
+    </select>
+</mapper>

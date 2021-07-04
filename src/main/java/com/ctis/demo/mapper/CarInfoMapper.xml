@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctis.demo.mapper.CarInfoMapper">
+    <insert id="addCar" parameterType="com.ctis.demo.pojo.CarInfo">
+        insert into ctis.t_car_info
+        set carID=#{carID},
+            carNumber=#{carNumber},
+            orgID=#{orgID},
+            driverID=#{driverID},
+            carType=#{carType},
+            active=#{active},
+            carStatus=#{carStatus},
+            carDispatchStatus=#{carDispatchStatus}
+    </insert>
+    <update id="deleteCar">
+        update ctis.t_car_info
+        set active=0
+        where carID=#{carID}
+    </update>
+    <update id="updateCar" parameterType="com.ctis.demo.pojo.CarInfo">
+        update ctis.t_car_info
+        set carNumber=#{carNumber},
+            orgID=#{orgID},
+            driverID=#{driverID},
+            carType=#{carType},
+            carStatus=#{carStatus},
+            carDispatchStatus=#{carDispatchStatus}
+        where carID=#{carID}
+    </update>
+    <select id="getCarList" resultType="com.ctis.demo.pojo.CarInfoVO">
+        select ctis.t_car_info.*, ctis.t_org_info.orgName, ctis.t_driver_info.driverName, a.dataLabel carTypeLabel, b.dataLabel carStatusLabel
+        from ctis.t_org_info, ctis.t_driver_info, ctis.t_car_info
+        left join ctis.t_data_dict a on ctis.t_car_info.carType=a.dataValue
+        left join ctis.t_data_dict b on ctis.t_car_info.carStatus=b.dataValue
+        where ctis.t_car_info.orgID=ctis.t_org_info.orgID
+        and ctis.t_car_info.driverID=ctis.t_driver_info.driverID
+        and ctis.t_car_info.active=1
+        order by ctis.t_car_info.carNumber
+        limit #{start}, #{end}
+    </select>
+    <select id="getCarTotal" resultType="Integer">
+        select count(*) from ctis.t_car_info where active=1
+    </select>
+    <select id="getCar" resultType="com.ctis.demo.pojo.CarInfoVO">
+        select ctis.t_car_info.*, ctis.t_org_info.orgName, ctis.t_driver_info.driverName, a.dataLabel carTypeLabel, b.dataLabel carStatusLabel
+        from ctis.t_org_info, ctis.t_driver_info, ctis.t_car_info
+        left join ctis.t_data_dict a on ctis.t_car_info.carType=a.dataValue
+        left join ctis.t_data_dict b on ctis.t_car_info.carStatus=b.dataValue
+        where ctis.t_car_info.orgID=ctis.t_org_info.orgID
+        and ctis.t_car_info.driverID=ctis.t_driver_info.driverID
+        and carID=#{id}
+        and ctis.t_car_info.active=1
+    </select>
+    <select id="getCarTypeList" resultType="com.ctis.demo.pojo.CarType">
+        select dataValue carTypeValue, dataLabel carTypeLabel from ctis.t_data_dict where dataValue like 'car_type%'
+    </select>
+    <select id="getCarStatusList" resultType="com.ctis.demo.pojo.CarStatus">
+        select dataValue carStatusValue, dataLabel carStatusLabel from ctis.t_data_dict where dataValue like 'car_status%'
+    </select>
+
+
+</mapper>
