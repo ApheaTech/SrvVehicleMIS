@@ -1,18 +1,17 @@
-package com.ctis.demo.mapper;
+package com.ctis.demo.service;
 
 import com.ctis.demo.pojo.UserInfo;
 import com.ctis.demo.pojo.UserInfoVO;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Mapper
-public interface UserInfoMapper {
-    String getPasswd(String userAccount);
+
+public interface UserManageService {
     int addUser(UserInfo userInfo);
     int deleteUser(String userID);
-    int updateUser(UserInfo UserInfo);
-    List<UserInfoVO> getUserList();
+    int updateUser(UserInfo userInfo);
     UserInfoVO getUser(String userID);
     UserInfoVO getUserByAccount(String userAccount);
+    List<UserInfoVO> getUserList();
 }
