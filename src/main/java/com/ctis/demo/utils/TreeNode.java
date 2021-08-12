@@ -81,7 +81,7 @@ public class TreeNode {
     private String ID;
     private String fatherID;
     private String label;
-    private List<TreeNode> child = new ArrayList<>();
+    private List<TreeNode> children = new ArrayList<>();
 
     public TreeNode(String ID, String fatherID, String fullName) {
 
@@ -92,7 +92,7 @@ public class TreeNode {
 
     public void addTreeNode(TreeNode t) {
 
-        this.child.add(t);
+        this.children.add(t);
     }
 
     public static TreeNode buildTree(HashMap<String, List> origin) {
@@ -116,7 +116,6 @@ public class TreeNode {
                 nodes.get(currentNode.getFatherID()).addTreeNode(currentNode);
             }
         }
-        System.out.println(tree);
 
         return tree;
     }

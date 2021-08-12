@@ -42,9 +42,15 @@ public class OrgManage {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public TreeNode getOrgList() {
+    public List<OrgInfoVO> getOrgList() {
 
         return this.orgManageService.getOrgList();
+    }
+
+    @RequestMapping(value = "/tree", method = RequestMethod.GET)
+    public TreeNode getOrgTree() {
+
+        return this.orgManageService.getOrgTree();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)

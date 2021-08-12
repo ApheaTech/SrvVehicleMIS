@@ -46,23 +46,23 @@ public class OrgManageServiceImpl implements OrgManageService{
     }
 
     @Override
-    public TreeNode getOrgList() {
+    public List<OrgInfoVO> getOrgList() {
+
+        return this.orgInfoMapper.getOrgList();
+    }
+
+    @Override
+    public TreeNode getOrgTree() {
 
         List<OrgInfoVO> orgInfoVOS = this.orgInfoMapper.getOrgList();
         HashMap<String, List> orgInfoMap = new HashMap<>();
         for (OrgInfoVO orgInfoVO : orgInfoVOS) {
-            System.out.println(orgInfoVO.getOrgID()+"  "+orgInfoVO.getParentOrgID());
             ArrayList<String> list = new ArrayList<>();
             list.add(orgInfoVO.getParentOrgID());
             list.add(orgInfoVO.getOrgName());
             orgInfoMap.put(orgInfoVO.getOrgID(), list);
         }
         return TreeNode.buildTree(orgInfoMap);
-
-
-
-//        return this.orgInfoMapper.getOrgList();
-//        return null;
     }
 
     @Override

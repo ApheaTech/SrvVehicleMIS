@@ -1,0 +1,19 @@
+[DEBUG][21-07-23][org.apache.ibatis.logging.LogFactory]Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+[DEBUG][21-07-23][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-07-23][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-07-23][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-07-23][org.apache.ibatis.datasource.pooled.PooledDataSource]PooledDataSource forcefully closed/removed all connections.
+[DEBUG][21-07-23][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Opening JDBC Connection
+[DEBUG][21-07-23][org.apache.ibatis.datasource.pooled.PooledDataSource]Created connection -1839981983.
+[DEBUG][21-07-23][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Setting autocommit to false on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@92541a61]
+[DEBUG][21-07-23][com.ctis.demo.mapper.CarInfoMapper.getCarList]==>  Preparing: select car_info.*, org_info.orgName, driver_info.driverName, dict_a.dataLabel carTypeLabel, dict_b.dataLabel carStatusLabel from ctis.t_org_info as org_info, ctis.t_driver_info as driver_info, ctis.t_car_info as car_info left join ctis.t_data_dict as dict_a on car_info.carType=dict_a.dataValue left join ctis.t_data_dict as dict_b on car_info.carStatus=dict_b.dataValue where car_info.orgID=ctis.org_info.orgID and car_info.driverID=driver_info.driverID and car_info.active=1 order by car_info.carNumber limit ?, ?
+[DEBUG][21-07-23][com.ctis.demo.mapper.CarInfoMapper.getCarList]==> Parameters: 0(Integer), 10(Integer)
+[DEBUG][21-07-23][com.ctis.demo.mapper.CarInfoMapper.getCarList]<==      Total: 10
+[DEBUG][21-07-23][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Resetting autocommit to true on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@92541a61]
+[DEBUG][21-07-23][org.apache.ibatis.transaction.jdbc.JdbcTransaction]Closing JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@92541a61]
+[DEBUG][21-07-23][org.apache.ibatis.datasource.pooled.PooledDataSource]Returned connection -1839981983 to pool.
+[INFO][21-07-23][com.ctis.demo.DemoApplicationTests]xh coming
+[INFO][21-07-23][com.ctis.demo.DemoApplicationTests]info: xh coming
+[DEBUG][21-07-23][com.ctis.demo.DemoApplicationTests]debug: xh coming
+[INFO][21-07-27][com.ctis.demo.DemoApplicationTests]start test ...
+[INFO][21-07-27][com.ctis.demo.DemoApplicationTests]start test ...

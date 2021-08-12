@@ -10,6 +10,7 @@ public interface OrgManageService {
     int addOrg(OrgInfo orgInfo);
     int deleteOrg(String orgID);
     int updateOrg(OrgInfo orgInfo);
-    TreeNode getOrgList();
+    List<OrgInfoVO> getOrgList();
+    TreeNode getOrgTree();
     OrgInfoVO getOrg(String orgID);
 }
